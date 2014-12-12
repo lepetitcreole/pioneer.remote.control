@@ -1,0 +1,14 @@
+#################################################
+#	08/12/2014 - v1.1 - Initial status	#
+#################################################
+Feature :
+- Relaod A/V initial status at shutdown
+- Network automatic configuration
+
+#################################################
+#	06/12/2014 - v1.0 - First Release	#
+#################################################
+Feature :
+- Power ON/OFF
+- Change input
+- Set volume
