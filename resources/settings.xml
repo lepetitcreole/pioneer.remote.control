@@ -2,7 +2,7 @@
 <category label="Network">
    <setting type="lsep" label="Network configuration" />
    <setting id="discover" type="action" label="Start automatic discovery" action="RunScript(pioneer.remote.control,start_discover)" />
-	<setting id="receiver_ip" type="ipaddress" label="IP address" default="Enter receiver IP here" />
+	<setting id="receiver_ip" type="ipaddress" label="IP address" default="" />
 </category>
 <category label="Settings">
    <setting type="lsep" label="Power ON/OFF" />

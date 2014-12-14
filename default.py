@@ -39,6 +39,7 @@ def logger(log):
       xbmc.log("[DEBUG] Pioneer A/V : " + log)
         
 def start_autodisover():
+  notify("A/V Pioneer", "Discovery in progress...")
   port = 1900
   ip = "239.255.255.250"
   
@@ -220,6 +221,9 @@ if len(sys.argv) == 2:
 
 pioneer = Pioneer()      
 pioneer.readxml()
+if pioneer.receiver_ip == "":
+	notify("A/V Pioneer", "Not configured yet")
+	sys.exit(0)
 pioneer.testConnection()
 if connected:
    
