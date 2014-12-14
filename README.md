@@ -34,13 +34,15 @@ And maybe other Pioneer AV receiver model which supports Telnet commands
 
 Troubleshooting
 ------------
-Error "Device has refused a new connection" :
-	- only one telnet session can be opened on the receiver
-		=> close others applications which use telnet on the AV receiver and retry
-Error "Not connected" :
-	- addon can't connect to AV receiver
-		=> check if AV receiver IP address is right and retry
+- Error "Network is unreachable" :
+  - connection to network has failed
+   - make sure network is available when addon starts
+  - only one telnet session can be opened on the receiver
+   - close others applications which use telnet on the AV receiver and retry
+- Error "Not connected" :
+  - addon can't connect to AV receiver
+   - check if AV receiver IP address is right and retry
 
 Support 
 ------------
-Mail : lepetitcreole@live.fr
+Email : lepetitcreole@live.fr
