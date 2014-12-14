@@ -24,13 +24,22 @@ Features
 - Power ON/OFF
 - Set input (BD, DVD, SAT/CBL, DVR/BDR, HDMI 4, HDMI 5/MHL, HDMI 6, HDMI 7, TV)
 - Set volume
-- Relaod A/V initial status at shutdown
+- Reload A/V initial status at shutdown
 
 Supported devices list
 ------------
 VSX-923-K
 
 And maybe other Pioneer AV receiver model which supports Telnet commands
+
+Troubleshooting
+------------
+Error "Device has refused a new connection" :
+	- only one telnet session can be opened on the receiver
+		=> close others applications which use telnet on the AV receiver and retry
+Error "Not connected" :
+	- addon can't connect to AV receiver
+		=> check if AV receiver IP address is right and retry
 
 Support 
 ------------
