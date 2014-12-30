@@ -88,6 +88,7 @@ class Pioneer:
     self.volume_shutdown         =        xbmcaddon.Addon().getSetting("volume_shutdown") == "true"
     self.volume_shutdown_value   =        xbmcaddon.Addon().getSetting("volume_shutdown_value")
     self.reload_initial_settings =        xbmcaddon.Addon().getSetting("reload_initial_settings") == "true"
+    self.starting_delay          =        xbmcaddon.Addon().getSetting("starting_delay")
     self.disable_notifications   =        xbmcaddon.Addon().getSetting("disable_notifications") == "true"
     self.debug                   =        xbmcaddon.Addon().getSetting("debug") == "true"
     
@@ -221,6 +222,9 @@ if len(sys.argv) == 2:
 
 pioneer = Pioneer()      
 pioneer.readxml()
+
+xbmc.sleep(int(pioneer.starting_delay)*1000)
+
 if pioneer.receiver_ip == "":
 	notify("A/V Pioneer", "Not configured yet")
 	sys.exit(0)

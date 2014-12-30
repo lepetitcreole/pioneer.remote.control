@@ -1,12 +1,18 @@
 #################################################
-#	08/12/2014 - v1.1 - Initial status	#
+#	30/12/2014 - v1.2 - Delay			#
 #################################################
 Feature :
-- Relaod A/V initial status at shutdown
+- Delay addon starting
+
+#################################################
+#	08/12/2014 - v1.1 - Initial status			#
+#################################################
+Feature :
+- Reload A/V initial status at shutdown
 - Network automatic configuration
 
 #################################################
-#	06/12/2014 - v1.0 - First Release	#
+#	06/12/2014 - v1.0 - First Release			#
 #################################################
 Feature :
 - Power ON/OFF

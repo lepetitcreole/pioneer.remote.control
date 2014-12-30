@@ -20,6 +20,7 @@
    <setting id="volume_shutdown_value" type="slider" label="Value" default="-80" visible="eq(-1,true)" range="-80,0.5,12" option="float" />
    <setting type="lsep" label="Others settings" />
    <setting id="reload_initial_settings" type="bool" label="Reload initial A/V settings at shutdown" default="false" />
+   <setting id="starting_delay" type="slider" label="Delay addon starting" default="0" range="0,1,30" option="int" />
    <setting id="disable_notifications" type="bool" label="Disable notifications" default="false" />
    <setting id="debug" type="bool" label="Debug" default="false" />
 </category>
