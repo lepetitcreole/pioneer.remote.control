@@ -39,7 +39,6 @@ def logger(log):
       xbmc.log("[DEBUG] Pioneer A/V : " + log)
         
 def start_autodisover():
-  notify("A/V Pioneer", "Discovery in progress...")
   port = 1900
   ip = "239.255.255.250"
   
@@ -55,20 +54,26 @@ def start_autodisover():
   num_retransmits = 0
   while(num_retransmits < 10) and receiver_ip == "":
       num_retransmits += 1
-      client_socket.sendto(data, address)
-      recv_data, addr = client_socket.recvfrom(2048)
-      if "DMP" in recv_data and "description.xml" in recv_data:
-        receiver_ip = recv_data.split("LOCATION: http://")[1].split(":")[0]
-        xbmcaddon.Addon().setSetting("receiver_ip", receiver_ip)
-      time.sleep(1)
-  xbmc.log("[DEBUG] Pioneer A/V : " + receiver_ip)    
+      try:
+        client_socket.sendto(data, address)
+      except socket.error:
+        notify("A/V Pioneer", "Error : Network is unreachable")
+        logger("Network is unreachable")
+        sys.exit(0)
+      else:
+		notify("A/V Pioneer", "Discovery in progress...")
+		recv_data, addr = client_socket.recvfrom(2048)
+		if "DMP" in recv_data and "description.xml" in recv_data:
+			receiver_ip = recv_data.split("LOCATION: http://")[1].split(":")[0]
+			xbmcaddon.Addon().setSetting("receiver_ip", receiver_ip)
+		time.sleep(1)  
   if receiver_ip == "":
-      notify("A/V Pioneer", "Not found")
+     xbmc.log("[DEBUG] Pioneer A/V : Receiver IP address not found")  
+     notify("A/V Pioneer", "Not found")
   else:
-      notify("A/V Pioneer", receiver_ip)
+     xbmc.log("[DEBUG] Pioneer A/V : Receiver IP address" + receiver_ip)  
+     notify("A/V Pioneer", receiver_ip)
   return receiver_ip
-  
-  
   
 class Pioneer:
    
@@ -204,9 +209,9 @@ class Pioneer:
       connected = False
       logger("Test connection failed")
    except socket.error:
-      notify("A/V Pioneer", "Device has refused a new connection")
+      notify("A/V Pioneer", "Network is unreachable")
+      logger("Network is unreachable")
       connected = False
-      logger("Device has refused a new connection")   
    else:
       tn.close()
       connected = True

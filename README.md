@@ -14,7 +14,7 @@ Installation
 - Download the add-on as a ZIP file from https://github.com/lepetitcreole/pioneer.remote.control from the top of this page 
 - Open XBMC
  - Go to `System -> Settings -> Add-ons -> Install from zip file` and select the ZIP file previously downloaded
- -  Restart XBMC and configure the add-on:
+ - Restart XBMC and configure the add-on:
    - `System -> Settings -> Add-ons -> Enabled add-ons -> Services -> Pioneer A/V receiver remote control`
    - in NETWORK tab, click on `Start automatic discovery` (if your AV receiver is found, his IP address will be automatically set, otherwise set manually his IP address)
    - in SETTINGS tab, chose your options and enjoy!
@@ -34,13 +34,15 @@ And maybe other Pioneer AV receiver model which supports Telnet commands
 
 Troubleshooting
 ------------
-Error "Device has refused a new connection" :
-	- only one telnet session can be opened on the receiver
-		=> close others applications which use telnet on the AV receiver and retry
-Error "Not connected" :
-	- addon can't connect to AV receiver
-		=> check if AV receiver IP address is right and retry
+- Error "Network is unreachable" :
+  - connection to network has failed
+     - make sure network is available when addon starts
+  - telnet session opening on the receiver has failed
+     - close others applications which use telnet on the AV receiver and retry
+- Error "Not connected" :
+  - addon can't connect to AV receiver
+     - check if AV receiver IP address is right and retry
 
 Support 
 ------------
-Mail : lepetitcreole@live.fr
+Email : lepetitcreole@live.fr
