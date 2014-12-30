@@ -1,7 +1,7 @@
-XBMC addon for Pioneer A/V receivers
+KODI/XBMC addon for Pioneer A/V receivers
 ==========================
 
-Automatically configure your Pioneer AV receiver at XBMC booting/shutdown!
+Automatically configure your Pioneer AV receiver at KODI/XBMC booting/shutdown!
 
 Donate :
 ------------
