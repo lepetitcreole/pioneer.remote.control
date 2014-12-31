@@ -22,6 +22,8 @@ params = None
 inputLabel = [ "BD", "DVD", "SAT/CBL", "DVR/BDR", "HDMI 4", "HDMI 5/MHL", "HDMI 6", "HDMI 7", "TV" ]
 inputMapping = [ 25, 4, 6, 15, 22, 23, 24, 34, 5 ]
 userInputLabel = [ "", "", "", "", "", "", "", "", "" ]
+listeningMode = [ "AUTO SURROUND", "EXT. STEREO" ]
+listeningModeMapping = [ "0006", "0112" ]
 
 if not NOSE:
   import xbmc
@@ -81,21 +83,25 @@ class Pioneer:
     global NOSE
     global DEBUG
     
-    self.receiver_ip             =        xbmcaddon.Addon().getSetting("receiver_ip")
-    self.power_on_boot           =        xbmcaddon.Addon().getSetting("power_on_boot") == "true"
-    self.power_off_shutdown      =        xbmcaddon.Addon().getSetting("power_off_shutdown") == "true"
-    self.input_boot              =        xbmcaddon.Addon().getSetting("input_boot") == "true"
-    self.input_boot_value        =        xbmcaddon.Addon().getSetting("input_boot_value")
-    self.input_shutdown          =        xbmcaddon.Addon().getSetting("input_shutdown") == "true"
-    self.input_shutdown_value    =        xbmcaddon.Addon().getSetting("input_shutdown_value")
-    self.volume_boot             =        xbmcaddon.Addon().getSetting("volume_boot") == "true"
-    self.volume_boot_value       =        xbmcaddon.Addon().getSetting("volume_boot_value")
-    self.volume_shutdown         =        xbmcaddon.Addon().getSetting("volume_shutdown") == "true"
-    self.volume_shutdown_value   =        xbmcaddon.Addon().getSetting("volume_shutdown_value")
-    self.reload_initial_settings =        xbmcaddon.Addon().getSetting("reload_initial_settings") == "true"
-    self.starting_delay          =        xbmcaddon.Addon().getSetting("starting_delay")
-    self.disable_notifications   =        xbmcaddon.Addon().getSetting("disable_notifications") == "true"
-    self.debug                   =        xbmcaddon.Addon().getSetting("debug") == "true"
+    self.receiver_ip                      =        xbmcaddon.Addon().getSetting("receiver_ip")
+    self.power_on_boot                    =        xbmcaddon.Addon().getSetting("power_on_boot") == "true"
+    self.power_off_shutdown               =        xbmcaddon.Addon().getSetting("power_off_shutdown") == "true"
+    self.input_boot                       =        xbmcaddon.Addon().getSetting("input_boot") == "true"
+    self.input_boot_value                 =        xbmcaddon.Addon().getSetting("input_boot_value")
+    self.input_shutdown                   =        xbmcaddon.Addon().getSetting("input_shutdown") == "true"
+    self.input_shutdown_value             =        xbmcaddon.Addon().getSetting("input_shutdown_value")
+    self.volume_boot                      =        xbmcaddon.Addon().getSetting("volume_boot") == "true"
+    self.volume_boot_value                =        xbmcaddon.Addon().getSetting("volume_boot_value")
+    self.volume_shutdown                  =        xbmcaddon.Addon().getSetting("volume_shutdown") == "true"
+    self.volume_shutdown_value            =        xbmcaddon.Addon().getSetting("volume_shutdown_value")
+    self.listening_mode_boot              =        xbmcaddon.Addon().getSetting("listening_mode_boot") == "true"
+    self.listening_mode_value_boot        =        xbmcaddon.Addon().getSetting("listening_mode_value_boot")
+    self.listening_mode_shutdown          =        xbmcaddon.Addon().getSetting("listening_mode_shutdown") == "true"
+    self.listening_mode_value_shutdown    =        xbmcaddon.Addon().getSetting("listening_mode_value_shutdown")
+    self.reload_initial_settings          =        xbmcaddon.Addon().getSetting("reload_initial_settings") == "true"
+    self.starting_delay                   =        xbmcaddon.Addon().getSetting("starting_delay")
+    self.disable_notifications            =        xbmcaddon.Addon().getSetting("disable_notifications") == "true"
+    self.debug                            =        xbmcaddon.Addon().getSetting("debug") == "true"
     
     if self.disable_notifications:
       NOSE = True
@@ -159,6 +165,17 @@ class Pioneer:
     logger(logsStr)
     xbmc.sleep(500)
 
+  def setListeningMode(self, mode):
+    str1 = '%s%s' % (listeningModeMapping[int(mode)], "sr\n\r")
+    logger(str1)
+    tn = telnetlib.Telnet(self.receiver_ip, 23, 5)    
+    tn.write(str1)
+    tn.close()
+    notify("A/V Pioneer", listeningMode[int(mode)])
+    str2 = "Listening mode : " + listeningMode[int(mode)]
+    logger(str2)
+    xbmc.sleep(1000)
+    
   def getPowerStatus(self):
     global initialPowerStatus
     tn = telnetlib.Telnet(self.receiver_ip, 23, 5)    
@@ -248,6 +265,8 @@ if connected:
       pioneer.setVolume(pioneer.volume_boot_value)
    if pioneer.input_boot:
       pioneer.setInput(pioneer.input_boot_value)
+   if pioneer.listening_mode_boot:
+      pioneer.setListeningMode(pioneer.listening_mode_value_boot)
 while not xbmc.abortRequested:
    xbmc.sleep(500)
 pioneer.readxml()
@@ -257,6 +276,8 @@ if connected:
          pioneer.setVolume(initialVolumeStatus)
          pioneer.setInput(initialInput)
    else:
+      if pioneer.listening_mode_shutdown:
+         pioneer.setListeningMode(pioneer.listening_mode_value_shutdown)
       if pioneer.volume_shutdown:
          pioneer.setVolume(pioneer.volume_shutdown_value)
       if pioneer.input_shutdown:

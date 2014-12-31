@@ -6,18 +6,23 @@
 </category>
 <category label="Settings">
    <setting type="lsep" label="Power ON/OFF" />
-	<setting id="power_on_boot" type="bool" label="Power ON A/V receiver at boot" default="false"/>
+   <setting id="power_on_boot" type="bool" label="Power ON A/V receiver at boot" default="false"/>
    <setting id="power_off_shutdown" type="bool" label="Power OFF A/V receiver at shutdown" default="false"/>
    <setting type="lsep" label="Input" />
-	<setting id="input_boot" type="bool" label="Change input at boot" default="false"/>
-   <setting id="input_boot_value" type="enum" label="Input" default="1" visible="eq(-1,true)" values="BD|DVD|SAT/CBL|DVR/BDR|HDMI 4|HDMI 5/MHL|HDMI 6|HDMI 7|TV" />
-	<setting id="input_shutdown" type="bool" label="Change input at shutdown" default="false"/>
-   <setting id="input_shutdown_value" type="enum" label="Input" default="1" visible="eq(-1,true)" values="BD|DVD|SAT/CBL|DVR/BDR|HDMI 4|HDMI 5/MHL|HDMI 6|HDMI 7|TV" />
+   <setting id="input_boot" type="bool" label="Change input at boot" default="false"/>
+   <setting id="input_boot_value" type="enum" label="Input" default="0" visible="eq(-1,true)" values="BD|DVD|SAT/CBL|DVR/BDR|HDMI 4|HDMI 5/MHL|HDMI 6|HDMI 7|TV" />
+   <setting id="input_shutdown" type="bool" label="Change input at shutdown" default="false"/>
+   <setting id="input_shutdown_value" type="enum" label="Input" default="0" visible="eq(-1,true)" values="BD|DVD|SAT/CBL|DVR/BDR|HDMI 4|HDMI 5/MHL|HDMI 6|HDMI 7|TV" />
    <setting type="lsep" label="Volume" />
    <setting id="volume_boot" type="bool" label="Set volume at booting" default="false"/>
    <setting id="volume_boot_value" type="slider" label="Value" default="-80" visible="eq(-1,true)" range="-80,0.5,12" option="float" />
    <setting id="volume_shutdown" type="bool" label="Set volume at shutdown" default="false"/>
    <setting id="volume_shutdown_value" type="slider" label="Value" default="-80" visible="eq(-1,true)" range="-80,0.5,12" option="float" />
+   <setting type="lsep" label="Listening mode" />
+   <setting id="listening_mode_boot" type="bool" label="Change listening mode at boot" default="false"/>
+   <setting id="listening_mode_value_boot" type="enum" label="Mode" default="0" visible="eq(-1,true)" values="AUTO SURROUND|EXT. STEREO" />
+   <setting id="listening_mode_shutdown" type="bool" label="Change listening mode at shutdown" default="false"/>
+   <setting id="listening_mode_value_shutdown" type="enum" label="Mode" default="0" visible="eq(-1,true)" values="AUTO SURROUND|EXT. STEREO" />
    <setting type="lsep" label="Others settings" />
    <setting id="reload_initial_settings" type="bool" label="Reload initial A/V settings at shutdown" default="false" />
    <setting id="starting_delay" type="slider" label="Delay addon starting" default="0" range="0,1,30" option="int" />

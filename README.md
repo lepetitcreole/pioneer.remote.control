@@ -25,6 +25,7 @@ Features
 - Set input (BD, DVD, SAT/CBL, DVR/BDR, HDMI 4, HDMI 5/MHL, HDMI 6, HDMI 7, TV)
 - Set volume
 - Reload A/V initial status at shutdown
+- Set listening mode (AUTO SURROUND, EXTENDED STEREO)
 
 Supported devices list
 ------------
