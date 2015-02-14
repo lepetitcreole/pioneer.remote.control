@@ -76,7 +76,7 @@ def start_autodisover():
      xbmc.log("[DEBUG] Pioneer A/V : Receiver IP address" + receiver_ip)  
      notify("A/V Pioneer", receiver_ip)
   return receiver_ip
-  
+      
 class Pioneer:
    
   def readxml(self):
@@ -136,6 +136,36 @@ class Pioneer:
     logsStr = "Set volume to " + vol + "dB "
     logger(logsStr)
     xbmc.sleep(1000)
+
+  def volUp(self):
+    str1 = "vu\n\r"
+    try:
+      tn = telnetlib.Telnet(self.receiver_ip, 23, 5)
+    except:
+      logger("Connection failed")
+    else: 
+      try:
+        tn.write(str1)
+        tn.close()
+        str2 = "Volume UP"
+        logger(str2)
+      except:
+        logger("Connection failed")
+    
+  def volDown(self):
+    str1 = "vd\n\r"
+    try:
+      tn = telnetlib.Telnet(self.receiver_ip, 23, 5)
+    except:
+      logger("Connection failed")
+    else: 
+      try:
+        tn.write(str1)
+        tn.close()
+        str2 = "Volume DOWN"
+        logger(str2)
+      except:
+        logger("Connection failed")
 
   def setInput(self, input):
     str1 = '%02d%s' % (inputMapping[int(input)], "fn\n\r")
@@ -244,6 +274,18 @@ if len(sys.argv) == 2:
 
 pioneer = Pioneer()      
 pioneer.readxml()
+
+if len(sys.argv) == 2:
+    args = sys.argv[1]    
+    if sys.argv[1] == "volumeUp":
+      pioneer.volUp()
+      sys.exit(0)
+      
+if len(sys.argv) == 2:
+    args = sys.argv[1]    
+    if sys.argv[1] == "volumeDown":
+      pioneer.volDown()
+      sys.exit(0)
 
 xbmc.sleep(int(pioneer.starting_delay)*1000)
 
