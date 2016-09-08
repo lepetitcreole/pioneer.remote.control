@@ -2,7 +2,7 @@
 <addon 
 	id="pioneer.remote.control" 
 	name="Pioneer A/V receiver remote control" 
-	version="1.4" 
+	version="1.5"
 	provider-name="lepetitcreole">
 
   <requires>

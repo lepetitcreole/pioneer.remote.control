@@ -10,9 +10,9 @@
    <setting id="power_off_shutdown" type="bool" label="Power OFF A/V receiver at shutdown" default="false"/>
    <setting type="lsep" label="Input" />
    <setting id="input_boot" type="bool" label="Change input at boot" default="false"/>
-   <setting id="input_boot_value" type="enum" label="Input" default="0" visible="eq(-1,true)" values="BD|DVD|SAT/CBL|DVR/BDR|HDMI 4|HDMI 5/MHL|HDMI 6|HDMI 7|TV" />
+   <setting id="input_boot_value" type="enum" label="Input" default="5" visible="eq(-1,true)" values="PHONO|CD|TUNER|CD|DVD|TV|SAT/CBL|VIDEO|MULTI CH|VIDEO 2|DVR|DVR 2|IPOD|XM|HDMI 1|HDMI 2|HDMI 3|HDMI 4|HDMI 5/MHL|BD|HOME MEDIA|SIRIUS|HDMI (CYCLIC)|HDMI 7" />
    <setting id="input_shutdown" type="bool" label="Change input at shutdown" default="false"/>
-   <setting id="input_shutdown_value" type="enum" label="Input" default="0" visible="eq(-1,true)" values="BD|DVD|SAT/CBL|DVR/BDR|HDMI 4|HDMI 5/MHL|HDMI 6|HDMI 7|TV" />
+   <setting id="input_shutdown_value" type="enum" label="Input" default="5" visible="eq(-1,true)" values="PHONO|CD|TUNER|CD|DVD|TV|SAT/CBL|VIDEO|MULTI CH|VIDEO 2|DVR|DVR 2|IPOD|XM|HDMI 1|HDMI 2|HDMI 3|HDMI 4|HDMI 5/MHL|BD|HOME MEDIA|SIRIUS|HDMI (CYCLIC)|HDMI 7" />
    <setting type="lsep" label="Volume" />
    <setting id="volume_boot" type="bool" label="Set volume at booting" default="false"/>
    <setting id="volume_boot_value" type="slider" label="Value" default="-80" visible="eq(-1,true)" range="-80,0.5,12" option="float" />

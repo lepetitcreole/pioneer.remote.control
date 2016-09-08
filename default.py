@@ -19,9 +19,9 @@ initialInput = ""
 initialStatusIsSet = False
 params = None
 
-inputLabel = [ "BD", "DVD", "SAT/CBL", "DVR/BDR", "HDMI 4", "HDMI 5/MHL", "HDMI 6", "HDMI 7", "TV" ]
-inputMapping = [ 25, 4, 6, 15, 22, 23, 24, 34, 5 ]
-userInputLabel = [ "", "", "", "", "", "", "", "", "" ]
+inputLabel = [ "PHONO", "CD", "TUNER", "CD", "DVD", "TV", "SAT/CBL", "VIDEO", "MULTI CH", "VIDEO 2", "DVR", "DVR 2", "IPOD", "XM", "HDMI 1", "HDMI 2", "HDMI 3", "HDMI 4", "HDMI 5/MHL", "BD", "HOME MEDIA", "SIRIUS", "HDMI (CYCLIC)", "HDMI 7" ]
+inputMapping = [ 0, 1, 2, 3, 4, 5, 6, 10, 12, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 25, 26, 27, 31, 34 ]
+userInputLabel = [ "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "" ]
 listeningMode = [ "AUTO SURROUND", "EXT. STEREO" ]
 listeningModeMapping = [ "0006", "0112" ]
 
@@ -188,7 +188,7 @@ class Pioneer:
     tn.close()
     rawInitialInput = str(response[2:])
     i=0
-    while (int(rawInitialInput) != inputMapping[i]) and (i<=8):
+    while (int(rawInitialInput) != inputMapping[i]) and (i<=23):
         i+=1
     initialInput=str(i)
     logsStr = "Initial input status is " + inputLabel[i]
@@ -237,7 +237,7 @@ class Pioneer:
     global inputCustomLabel
     tn = telnetlib.Telnet(self.receiver_ip, 23, 5)    
     tn.read_until("")
-    for i in range(0, 8):
+    for i in range(0, 23):
        request = '%s%02d%s' % ("?rgb", inputMapping[i], "\n\r")
        tn.write(request)
        response = tn.read_until("\n\r", 1)
